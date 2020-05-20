@@ -1,200 +1,95 @@
-# Huawei Xamarin Analytics Demo
+![enter image description here](https://raw.githubusercontent.com/omernaser/Huawei-MAP/master/huaweiicon.png)
+## Xamarin.Android.HMSAnalytics
 
-## Contents
-- Introduction
-- Installation Guide
-- React-Native Example Method Definition
-- Configuration Description
-- Licensing and Terms
+**Introduction**
+AppGallery Connect is dedicated to providing one-stop services for app creation, development, distribution, operations, and engagement, and building a smart app ecosystem for all scenarios.
 
-## 1. Introduction
+HUAWEI Analytics Kit provides advanced analytics capabilities for AppGallery Connect, helping developers implement closed-loop management driven by data analytics, ranging from business insights to product improvements and operations execution. The Analytics Kit collects user behavior events and user attributes to help developers clearly understand user behavior models, thereby enabling user insights, product optimization, and data analysis-driven operations.
 
-The demo project is an example that aims to demonstrate how the HUAWEI Analytics Kit SDK for Xamarin can be used.
+### Setup
 
-The Xamarin SDK wraps the Android SDK with Managed Callable Wrappers through the usage of Android Bindings Library projects. It provides the same APIs as the native SDK.
+-   Available on NuGet:  [[[https://www.nuget.org/packages/Xamarin.Android.HMSAnalytics/](https://www.nuget.org/packages/Xamarin.Android.HMSAnalytics/))][![NuGet](https://camo.githubusercontent.com/8a3005d7f8ce0d50737ec134a48480ad61bfa5b9/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f762f506c7567696e2e4669726562617365507573684e6f74696669636174696f6e2e7376673f6c6162656c3d4e75476574)](https://www.nuget.org/packages/Xamarin.Android.HMSPushKit/)
+-   Install into your .NETStandard project and Client projects.
 
-The Xamarin SDK libraries are described as follows:
+**Platform Support**
+Xamarin.Android
 
-- Library .DLL files: These are the files enable the usage of the native Android SDK interfaces. Once generated, these files can be referenced & used directly in a Xamarin.Android project.
+## Features
 
-## 2. Installation Guide
+# Dashboard
+The app overview centrally displays core metrics (such as new users and user activity) of the current app, and provides the entrances for event analysis and activity analysis, helping you quickly understand recent overall performance of your app.
 
-Before using the Xamarin SDK code, ensure that Visual Studio 2019 is installed with "Mobile development with .NET" support.
+# Event Analysis
+HUAWEI Analytics Kit provides various event analysis functions and supports  [preset events](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/event_description#preset_events)  (including auto-collected events and predefined events) and custom events.
 
-### Summary
-- Download the SDK and its dependencies
-- Generate the binding libraries
-- Copy the libraries into the demo project
-- Create an application in the AppGalleryConnect platform, configure the application retrieve **agconnect-services.json** file
-- Sign your application and register the SHA-256 fingerprint on the AppGallery Connect platform
-- Run & debug your app
+Reported event data is aggregated by event ID. You can view the event overview and event analysis details, such as the event trend and the distribution of models and operating system versions that are sources of events.
 
-### 2.1 Huawei Xamarin Analytics Library
-You can retrieve the library from developer.huawei.com
+# User Analysis
+User analysis includes new user analysis, active user analysis, and startup times analysis. By analyzing users, you can understand the user royalty of a product and set activeness promotion strategies accordingly
 
-### 2.2 Download native Android SDK packages
-The analytics SDK and its dependencies must be downloaded from the Huawei repository.
-Use the following URLs to download the packages.
-- [hianalytics-4.0.2.300.aar](https://developer.huawei.com/repo/com/huawei/hms/hianalytics/4.0.2.300/hianalytics-4.0.2.300.aar)
-- [tasks-1.3.3.300.aar](https://developer.huawei.com/repo/com/huawei/hmf/tasks/1.3.3.300/tasks-1.3.3.300.aar)
-- [update-2.0.6.300.aar](https://developer.huawei.com/repo/com/huawei/hms/update/2.0.6.300/update-2.0.6.300.aar)
-- [network-grs-4.0.2.300.aar](https://developer.huawei.com/repo/com/huawei/hms/network-grs/4.0.2.300/network-grs-4.0.2.300.aar)
-- [network-common-4.0.2.300.aar](https://developer.huawei.com/repo/com/huawei/hms/network-common/4.0.2.300/network-common-4.0.2.300.aar)
-- [base-4.0.2.300.aar](https://developer.huawei.com/repo/com/huawei/hms/base/4.0.2.300/base-4.0.2.300.aar)
-- [opendevice-4.0.1.301.aar](https://developer.huawei.com/repo/com/huawei/hms/opendevice/4.0.1.301/opendevice-4.0.1.301.aar)
-- [agconnect-core-1.0.0.300.aar](https://developer.huawei.com/repo/com/huawei/agconnect/agconnect-core/1.0.0.300/agconnect-core-1.0.0.300.aar)
-- [agconnect-credential-1.0.0.300.aar](https://developer.huawei.com/repo/com/huawei/agconnect/agconnect-credential/1.0.0.300/agconnect-credential-1.0.0.300.aar)
-- [agconnect-https-1.0.0.300.aar](https://developer.huawei.com/repo/com/huawei/agconnect/agconnect-https/1.0.0.300/agconnect-https-1.0.0.300.aar)
-- [datastore-core-1.0.0.300.aar](https://developer.huawei.com/repo/com/huawei/agconnect/datastore-core/1.0.0.300/datastore-core-1.0.0.300.aar)
-- [datastore-annotation-1.0.0.300.jar](https://developer.huawei.com/repo/com/huawei/agconnect/datastore-annotation/1.0.0.300/datastore-annotation-1.0.0.300.jar)
+# User Lifecycle
+User lifecycle refers to the entire process from the time when a user starts the app for the first time to that when the user leaves the app. The lifecycle of a user can be divided into the following phases:  **Beginner**,  **Growing**,  **Mature**,  **Inactive**, and  **Lost**.
 
-### 2.3 Open the library project
-An Android Bindings Library project for Xamarin allows the usage of only one .aar file. For this reason the library repository comes with multiple library projects. 
+Operations personnel can perform user steering and refined operations on users based on user lifecycle analysis to improve user activeness and retention and reduce user churn.
 
-Open up Visual Studio 2019. Then from the menu;
-	
-- Click "Open a project or a solution"
-- Navigate to the directory where you cloned the repository and open "XHiAnalytics-4.0.2.300.csproj".
+# User Behavior
+Behavior analysis includes activity analysis, revisit analysis, and page analysis.
 
-### 2.4 Import the downloaded packages
-Once you open the library project for the analytics SDK, each package you downloaded in the first step must placed under its related library project.
+User activity is a key metric for product stickiness and health status. Through activity analysis, you can understand the dependency of users on your products.
 
-Inside the "Solution Explorer", expand each project and repeat the steps below:
-- Right click "Jars" -> "Add" -> "Existing Item" (Shift + Alt + A)
-- Navigate to the folder where you downloaded the packages and select the related .aar or .jar file.	
-    
-         Example: For XTasks-1.3.3.300 project, import "tasks-1.3.3.300.aar"
-- Click on the package file you just imported. 
-		In the **properties** window, 
-			
-    - set the Build Action as "LibraryProjectZip" if the file type is .aar
-	- set the Build Action as "EmbeddedJar" if the file type is .jar
+In addition, you can analyze revisit users to understand the ability for operation campaigns or new product features to win back users.
 
-### 2.5 Download the common dependencies
-There are some open-source dependencies that should be downloaded seperately to each necessary library project. These dependencies are downloaded by using the NuGet Package Manager console.
+By analyzing the access trend, access depth, and stay duration of different pages in an app, you can determine the importance of each page and provide data support for page optimization strategies.
 
-From the Visual Studio's toolbar, click Tools -> NuGet Package Manager -> Package Manager Console. Then perform the steps below:
-- In the package manager console window, set one of the following projects as the default: 
-	- XAgConnectHttps-1.0.0.300
-	- XAgConnectCredential-1.0.0.300
-	- XHiAnalytics-4.0.2.300
-	
-- Run the following commands to install the common dependencies. 
-**NOTE:** Make sure you have a **stable internet connection** and if you have a proxy setting, make sure it does prevent access to the NuGet platform.
+# Attribution Analysis
+Attribution analysis of in-app events measures the conversion contribution of to-be-attributed events (such as tapping a push message) to target conversion events (such as placing a purchase order). You can define target conversion events and to-be-attributed events, and select an attribution model to generate an attribution analysis report. The report helps evaluate the marketing channel conversion effect so that you can adjust your strategy in time.
 
-```
-    Install-Package Square.OkHttp3 -Version 3.11.0
-	Install-Package Xamarin.Square.OkIO -Version 1.14.0
-```
-		
-- Repeat the steps for **each of the three projects**.
+An attribution model is a rule or a set of rules that determine how to assign sales and conversion contributions to contact points in the conversion path. For example, the Last event attribution model assigns 100% of contributions to the final contact point (that is, a tap) before sales or conversion, and the First event attribution model assigns 100% of contributions to the contact point that triggers the conversion path.
 
-### 2.6 Build the library.
-From the Visual Studio's toolbar, click "Build" -> "Build Solution" (Ctrl + Shift + B).
-Once the build process is complete, generated classes should be visible in the object browser and ready to use.
+# Audience Analysis
+An audience is a group of users who have common attributes and behavior. You can perform insight analysis on audiences to understand which users are more likely to be attracted by your products. You can also customize operations strategies for different audiences to improve user experience and operations efficiency.
 
-(View -> Object Browser) (Ctrl + Alt + J)
+# Path Analysis
+Path analysis displays the behavior paths of users in apps and provides product managers and operations personnel with key data about user actions in apps and the process of leaving apps. For example, after a new version is released, users' recognition of new functions can be obtained through behavior path analysis. Alternatively, e-commerce operations personnel can use the path analysis function to obtain the churn rate of users in a certain step.
 
-### 2.7 Copy the libary .dll files
-Once you build the analytics SDK library project, the generated .dll files should be copied inside the demo project.
-- Copy the .dll files from "...\XHiAnalytics-4.0.2.300\bin\Debug\" or "...\XHiAnalytics-4.0.2.300\bin\Release\" depending on your build type selection.
-- To the "_LibDlls" folder of the demo project. 
-
-### 2.8 Create an application with AppGallery Connect
-To be able to observe the events sent from the demo application, you need to follow the steps specified under the item 2, in the URL below.
-- [Analytics Kit Pre-development Procedure](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/Development-Guide#h1-2-pre-development-procedure)
+# Funnel Analysis
+The funnel analysis supports comparison based on a specific indicator. Currently, user attribute comparison, audience comparison, and industry comparison are supported. For example, you can compare the funnel conversion rates of different device brands or perform drill-down analysis for industry categories.
 
 
-### 2.9 Place your agconnect-services.json file inside the project
-Download the **agconnect-services.json** file created for your AppGallery application, by following the steps specified under the item 3.1, in the URL below.
-- [Integrating the Analytics Kit SDKs](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/Development-Guide#h1-3-integrating-the-sdks)
-	
-Once you download your "**agconnect-services.json**" file, place it under the "Assets" folder of the demo project.
+# Retention Analysis
+Retention is critical to app growth and operations. The retention rate represents users' continuous interest in products and is one of the main metrics for measuring the core value of products. Retention analysis helps you understand the continuous attractiveness of your product to users.
 
-### 2.10 Open the demo project and modify AndroidManifest.xml
-Open up Visual Studio 2019. Then from the menu;
-- Click "Open a project or a solution"
-- Navigate to the directory where the demo project resides and open "XamarinHmsHiAnalyticsDemo.csproj".
+# Real-time Analysis
+HUAWEI Analytics Kit displays the counts and proportions of the hottest events, event parameters, and parameter values in real time. Real-time analysis helps product managers and operations managers understand the effect of marketing and product improvement.
 
-Open the "AndroidManifest.xml" file under the "Properties" folder. Then change the "package" property with package name you specified on the AppGallery Connect platform.
+The real-time analysis report page provides the automatic refresh function. After this function is enabled, the page is automatically refreshed every minute. If the function is disabled, you need to click the refresh button to refresh the page.
 
-### 2.11 Create a signature file
-If you already have a signature file generated, you can skip to the next step.
+# App Debugging
+During app development, the product manager and technical team can cooperate with each other to perform the final debugging on data reporting, preventing tracing point omission and event attribute setting errors.
 
-If you don't have a signature file, perform the following steps:
-- Open the command line tool (using the **cmd** command) and run the **cd** command to go to the directory where **keytool.exe** is located under the **JDK** installation directory. 
+# App Version Analysis
+The app version analysis report gives you a knowledge of the app adoption rate, interaction, and stability, helping you optimize the version policy.
 
-    **Note:** Visual Studio comes with OpenJDK installed.
+# Meta Manage
+You can manage events, user attributes, and pages in metadata management.
 
-- Run the following command:
+# Analysis Settings
+You can manage settings for advanced analytics on this page.
 
-```
-keytool -genkey -keystore <keystore-file> -storepass <keystore-pass> -alias <key-alias> -keypass <key-pass> -dname <dname> -keysize 2048 -keyalg RSA -validity <validity-period>
-```
+## Sample Events:
 
-- In the preceding command;
+![enter image description here](https://raw.githubusercontent.com/omernaser/Huawei-Analytics/master/Screenshot_20200520_144324_com.companyname.hms_map_demo.jpg)
 
-    - **\<keystore-file\>** is the complete path to the app's signature file. File extension must be .jks or .keystore. For example; "D:\Android\mykeystore.jks"
-    - **\<keystore-pass\>** is the password of your keystore. Requires minimum 6 characters. For example; "123456"
-    - **\<key-alias\>** is the alias name of key that will be stored in your keystore. For example; "sitekitshowcase"
-    - **\<key-pass\>** is the password of your key. Requires minimum 6 characters. For example; "12345"
-    - **\<dname\>** is a unique identifier for the application in the keystore. For example; "o=Huawei"
-    - **\<validity-period\>** Amout of days the key will be valid with this keystore. For example; "36500"
 
-    Example:
-```
-keytool -genkey -keystore D:\Android\mykeystore.jks -storepass 123456 -alias sitekitshowcase -keypass 123456 -dname "o=Huawei" -keysize 2048 -keyalg RSA -validity 36500
-```
 
-### 2.12 Sign your application
-You need to sign your application in order to be able to register & use your signature file in the AppGallery Connect platform. Perform the following steps:
-- In the "Solution Explorer" window, right click the demo and open "Properties"
-- In the window that just opened, select "Android Package Signing" from the menu on the left.
-- Check the option "Sign the .APK file using the following keystore details.". Then fill out the form below with required information.
 
-    **Note:** You should perform these steps for both **Debug** and **Release** configurations.
 
-### 2.13 Obtaining the SHA-256 fingerprint from signature file
-You need to obtain the SHA-256 Fingerprint of your signature file.
 
-Perform the following steps:
-- Open the command line tool (using the **cmd** command) and run the **cd** command to go to the directory where **keytool.exe** is located under the **JDK** installation directory. 
+## Reference
 
-    **Note:** Visual Studio comes with OpenJDK installed.
 
-- Run the following command and copy the SHA-256 fingerprint from the result.
+[https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/3021001](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/3021001)
 
-```
-keytool -list -v -keystore <keystore-file>
-```
-- In the preceding command;
-    - **\<keystore-file\>** is the complete path to the app's signature file. For example; "D:\Android\mykeystore.jks"
+[https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/3021002](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/3021002)
 
-    Example:
-```
-keytool -list -v -keystore D:\Android\mykeystore.jks
-```
-
-### 2.14 Registering the singing certificate fingerprint
-The signature fingerprint should be registered on the AppGallery Connect platform.
-
-Perform the steps below:
-- Sign in to [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html), click "**MyApps**" then select your application.
-- From the menu on the top, click on "**Develop**" and scroll to the bottom of the page.
-- Set the SHA-256 certificate fingerprint as the SHA-256 fingerprint you copied in the previous step.
-
-### 2.15 Run & debug your application
-You can now run your application and it should automatically start up on your mobile device.
-
-You can debug the events sent from your application by the following the steps described under the item 6.3, in the URL below:
-- [Access Debugging](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/Development-Guide#accessing_analytics_)
-
-## 3. Xamarin Example method definition
-No. Developer can flexibly develop projects based on the example code. 
-
-## 4. Configure parameters.    
-No.
-
-## 5. Licensing and Terms  
-Huawei Xamarin SDK uses the Apache 2.0 license.
-
+[https://developer.huawei.com/consumer/en/hms/huawei-analyticskit](https://developer.huawei.com/consumer/en/hms/huawei-analyticskit)
