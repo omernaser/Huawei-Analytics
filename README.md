@@ -14,6 +14,16 @@ HUAWEI Analytics Kit provides advanced analytics capabilities for AppGallery Con
 **Platform Support**
 Xamarin.Android
 
+
+**How To Use**
+1. You should add these lines to your MainActivity.cs
+
+>          var config = AGConnectServicesConfig.FromContext(this);
+            config.OverlayWith(new HmsLazyInputStream(this));
+            Com.Huawei.Agconnect.AGConnectInstance.Initialize(this);
+
+2. You should add agconnect-services.json to the assets Folder 
+refer to the following link to get it [https://developer.huawei.com/consumer/en/codelab/HMSAnalyticsKit/index.html#2](https://developer.huawei.com/consumer/en/codelab/HMSAnalyticsKit/index.html#2)
 ## Features
 
 # Dashboard
